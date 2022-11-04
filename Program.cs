@@ -70,17 +70,25 @@ public class Biblioteca
         return null;
     }
 
-    public void UtenteRegistrato()
-    {
+    public Persona ChiediDatiUtente() {
+
+        
         Console.WriteLine("Inserisci il cognome dell'utente");
         string cognome = Console.ReadLine();
         Console.WriteLine("Inserisci il nome dell'utente");
         string nome = Console.ReadLine();
 
-        Utente utente = TrovaUtente(cognome, nome);
+        return new Persona(cognome, nome);
+    }
+
+    public void UtenteRegistrato()
+    {
+        Persona daCercare = ChiediDatiUtente();
+
+        Utente utente = TrovaUtente(daCercare.Cognome, daCercare.Nome);
         if (utente != null)
         {
-            Console.WriteLine($"{cognome} {nome} è registrato");
+            Console.WriteLine($"{utente.Cognome} {utente.Nome} è registrato");
             Console.WriteLine("I suoi dati sono: ");
             Console.WriteLine($"telefono : {utente.Telefono}");
             Console.WriteLine($"email    : {utente.Email}");
@@ -88,5 +96,10 @@ public class Biblioteca
         {
             Console.WriteLine("L'utente NON è registrato");
         }
+    }
+
+    public void InserisciPrestito()
+    {
+
     }
 }
