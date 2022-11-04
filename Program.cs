@@ -1,4 +1,5 @@
-﻿using System.Runtime.ConstrainedExecution;
+﻿using System.Globalization;
+using System.Runtime.ConstrainedExecution;
 // inizializzo una nuova biblioteca
 Biblioteca biblioteca = new Biblioteca();
 
@@ -35,7 +36,7 @@ biblioteca.documenti[1].Disponibile = false;
 
 // ricerca se l'utente è registrato
 
-biblioteca.UtenteRegistrato();
+biblioteca.InserisciPrestito();
 
 
 public class Biblioteca
@@ -81,7 +82,7 @@ public class Biblioteca
         return new Persona(cognome, nome);
     }
 
-    public void UtenteRegistrato()
+    public Utente UtenteRegistrato()
     {
         Persona daCercare = ChiediDatiUtente();
 
@@ -92,14 +93,33 @@ public class Biblioteca
             Console.WriteLine("I suoi dati sono: ");
             Console.WriteLine($"telefono : {utente.Telefono}");
             Console.WriteLine($"email    : {utente.Email}");
+            return utente;
         } else
         {
             Console.WriteLine("L'utente NON è registrato");
+            return null;
         }
     }
 
     public void InserisciPrestito()
     {
+        Utente utente = UtenteRegistrato();
+        if (utente != null)
+        {
+            Console.WriteLine("Inserire il codice del documento");
+            Documento documento = TrovaDocumento(Console.ReadLine());
+            if (documento != null)
+            {
+                Console.WriteLine("Inserire la data d'inizio del prestito");
+                string dataInizio = Console.ReadLine();
+                Console.WriteLine("Inserire la data d'inizio del prestito");
+                string dataFine = Console.ReadLine();
+
+                prestiti.Add(new Prestito(utente, documento, dataInizio, dataFine));
+            }
+        }
+            
+
 
     }
 }
