@@ -13,6 +13,23 @@ biblioteca.documenti.Add(new Dvd("293", "Film Corto", "Cortometraggio", 1956, "F
 biblioteca.documenti.Add(new Dvd("393", "La ricerca", "Investigativo", 2013, "G54", new Persona("Bruni", "Brunio"), 110));
 biblioteca.documenti.Add(new Dvd("262", "La mummia", "Horror", 1924, "H54", new Persona("Ultimo", "Michele"), 434));
 
+// inserisco dei utenti
+
+biblioteca.utenti.Add(new Utente("Todirascu", "Andrei", "andrei@gmail.it", "34628839303"));
+biblioteca.utenti.Add(new Utente("Bulleri", "Daniele", "andrei@gmail.it", "34628833833"));
+biblioteca.utenti.Add(new Utente("Varramista", "Giulia", "giulia@gmail.it", "382903489303"));
+
+
+// inserisco dei prestiti
+
+biblioteca.prestiti.Add(new Prestito(biblioteca.utenti[0], biblioteca.documenti[2], "04/11/22", "24/11/22"));
+biblioteca.documenti[2].Disponibile = false;
+
+biblioteca.prestiti.Add(new Prestito(biblioteca.utenti[2], biblioteca.documenti[5], "04/11/22", "24/11/22"));
+biblioteca.documenti[5].Disponibile = false;
+
+biblioteca.prestiti.Add(new Prestito(biblioteca.utenti[1], biblioteca.documenti[1], "04/11/22", "24/11/22"));
+biblioteca.documenti[1].Disponibile = false;
 
 
 
