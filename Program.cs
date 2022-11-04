@@ -31,9 +31,13 @@ biblioteca.documenti[5].Disponibile = false;
 biblioteca.prestiti.Add(new Prestito(biblioteca.utenti[1], biblioteca.documenti[1], "04/11/22", "24/11/22"));
 biblioteca.documenti[1].Disponibile = false;
 
+// INIZIO PROGRAMMA
+
+// ricerca se l'utente è registrato
+
+biblioteca.UtenteRegistrato();
 
 
-Console.WriteLine(biblioteca.documenti[0].Titolo);
 public class Biblioteca
 {
     public List<Documento> documenti = new List<Documento>();
@@ -51,5 +55,38 @@ public class Biblioteca
         }
 
         return null;
+    }
+
+    public Utente TrovaUtente(string cognome, string nome)
+    {
+        foreach (Utente utente in utenti)
+        {
+            if (utente.Cognome.Equals(cognome) && utente.Nome.Equals(nome))
+            {
+                    return utente;
+            }
+        }
+
+        return null;
+    }
+
+    public void UtenteRegistrato()
+    {
+        Console.WriteLine("Inserisci il cognome dell'utente");
+        string cognome = Console.ReadLine();
+        Console.WriteLine("Inserisci il nome dell'utente");
+        string nome = Console.ReadLine();
+
+        Utente utente = TrovaUtente(cognome, nome);
+        if (utente != null)
+        {
+            Console.WriteLine($"{cognome} {nome} è registrato");
+            Console.WriteLine("I suoi dati sono: ");
+            Console.WriteLine($"telefono : {utente.Telefono}");
+            Console.WriteLine($"email    : {utente.Email}");
+        } else
+        {
+            Console.WriteLine("L'utente NON è registrato");
+        }
     }
 }
