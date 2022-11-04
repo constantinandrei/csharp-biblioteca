@@ -110,13 +110,22 @@ public class Biblioteca
             Documento documento = TrovaDocumento(Console.ReadLine());
             if (documento != null)
             {
+                if (!documento.Disponibile)
+                {
+                    Console.WriteLine($"Il libro attualmente è preso in prestito");
+                    return;
+                }
                 Console.WriteLine("Inserire la data d'inizio del prestito");
                 string dataInizio = Console.ReadLine();
                 Console.WriteLine("Inserire la data d'inizio del prestito");
                 string dataFine = Console.ReadLine();
 
                 prestiti.Add(new Prestito(utente, documento, dataInizio, dataFine));
+                documento.Disponibile = false;
+                Console.WriteLine($"Il prestito è stato inserito corettamene");
+                return;
             }
+            Console.WriteLine("Documento non trovato");
         }
             
 
