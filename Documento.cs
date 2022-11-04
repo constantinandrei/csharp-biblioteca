@@ -8,12 +8,18 @@
 //un autore (Nome, Cognome).
 public class Documento
 {
+    public Documento(string id, string titolo)
+    {
+        Id = id;
+        Titolo = titolo;
+    }
+
     public string Id { get; }
-    public string Titolo { get; }
-    public string Settore { get; }
-    public int Anno { get; }
-    public bool Stato { get; }
-    public string Scaffale { get; }
-    public Persona autore { get; }
+    public string Titolo { get; set; }
+    public string Settore { get; set; }
+    public int Anno { get; set; }
+    public bool Stato { get; set; }
+    public string Scaffale { get; set; }
+    public Persona autore { get; set; }
 
 }
