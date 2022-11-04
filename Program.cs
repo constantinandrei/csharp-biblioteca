@@ -1,14 +1,31 @@
 ﻿using System.Runtime.ConstrainedExecution;
+// inizializzo una nuova biblioteca
+Biblioteca biblioteca = new Biblioteca();
 
-Utente io = new Utente("Todirascu", "Constantin", "andrei@mail.it", "637389233");
+// inserisco dei libri e dvd
 
-Console.WriteLine(io.Cognome);
+biblioteca.documenti.Add(new Libro("8738393", "La ricerca"));
+Libro laRicerca = (Libro)biblioteca.TrovaDocumento("8738393");
+laRicerca.Pagine = 345;
+laRicerca.Titolo = "nuovo titolo";
 
-Libro libro1 = new Libro("56478", "Libro");
-Console.Write(libro1.GetType());
+Console.WriteLine(biblioteca.documenti[0].Titolo);
 public class Biblioteca
 {
     public List<Documento> documenti = new List<Documento>();
     public List<Utente> utenti = new List<Utente>();
     public List<Prestito> prestiti = new List<Prestito>();
+
+    public Documento TrovaDocumento(string id)
+    {
+        foreach (Documento documento in documenti)
+        {
+            if (documento.Id.Equals(id))
+            {
+                return documento;
+            }
+        }
+
+        return null;
+    }
 }
