@@ -36,7 +36,7 @@ biblioteca.documenti[1].Disponibile = false;
 
 // ricerca se l'utente è registrato
 
-biblioteca.InserisciPrestito();
+biblioteca.RicercaPrestito();
 
 
 public class Biblioteca
@@ -127,8 +127,31 @@ public class Biblioteca
             }
             Console.WriteLine("Documento non trovato");
         }
-            
+    }
 
+    public List<Prestito> RicercaPrestito()
+    {
+        Persona utente = ChiediDatiUtente();
+        List<Prestito> ret = new List<Prestito>();
 
+        foreach (Prestito prestito in prestiti)
+        {
+            if (prestito.Utente.Cognome.Equals(utente.Cognome) && prestito.Utente.Nome.Equals(utente.Nome)){
+                ret.Add(prestito);
+            }
+        }
+
+        StampaPrestiti(ret);
+
+        return ret;
+    }
+
+    public void StampaPrestiti(List<Prestito> prestiti)
+    {
+        foreach (Prestito prestito in prestiti)
+        {
+            Console.WriteLine("------------------");
+            Console.WriteLine($"Titolo: {prestito.Documento.Titolo}");
+        }
     }
 }
